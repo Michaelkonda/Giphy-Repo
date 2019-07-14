@@ -32,22 +32,22 @@ function populateButtons(searchArray, classToAdd, areaToAddTo) {
 //crete var image to create reference to an image tag and modify it//
 //add all the modifications to search div//
 //add searchdiv to searches div within the html//
-$(document).on('click', '.searchButton', function () {
+$(document).on('click', '.searchButton', function(){
     var type = $(this).data('type');
     var queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + type + '&api_key=LlUbXVeu1i89scCgjxNvVObmq2FxlxrU&limit:10';
-    $.ajax({ url: queryURL, method: 'GET' })
-        .done(function (response) {
-            for (var i = 0; i < response.data.length; i++) {
+    $.ajax({url:queryURL,method:'GET'})
+        .done(function(response){
+            for(var i=0; i<response.data.length;i++){
                 var searchDiv = $('<div class="search-item">');
                 var rating = response.data[i].rating;
-                var p = $('<p>').text('Rating: ' + rating);
+                var p = $('<p>').text('Rating: '+rating);
                 var animated = response.data[i].images.fixed_height.url;
                 var still = response.data[i].images.fixed_height_still.url;
-                var image = $('<img>');
-                image.attr('src', still);
-                image.attr('data.still', still);
-                image.attr('data.animated', animated);
-                image.attr('data.state', 'still');
+                var image = $('<img>');     
+                image.attr('src',still);
+                image.attr('data-still',still);
+                image.attr('data-animated',animated);
+                image.attr('data-state','still');
                 image.addClass('searchImage');
                 searchDiv.append(p);
                 searchDiv.append(image);
@@ -63,13 +63,13 @@ $(document).on('click', '.searchButton', function () {
 //inside the function create an if statement to let image be still or animate on click//
 //add this.attr so that data-state is also animated//
 $(document).on('click','.searchImage',function(){
-    var state = $(this).attr('data.state');
+    var state = $(this).attr('data-state');
     if(state == 'still'){
         $(this).attr('src',$(this).data('animated'));
-        $(this).attr('data.state','animated');
+        $(this).attr('data-state','animated');
     } else {
-        $(this).attr('src', $(this).data('still'));
-        $(this).attr('data.state','still');
+        $(this).attr('src',$(this).data('still'));
+        $(this).attr('data-state','still');
     }
 
 })
