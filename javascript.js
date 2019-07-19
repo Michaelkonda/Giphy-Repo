@@ -79,10 +79,15 @@ $(document).on('click','.searchImage',function(){
 //eq(0) grabs the first version  that is put in the submit button instead of just val(0)//
 //add this to the searchArray//
 //run populateButtons function again//
-$('#addSearch').on('click',function(){
+
+$('#search-form').on('click',function(e){
+    e.preventDefault()
+    
     var newSearch = $('input').eq(0).val();
+  
     searchArray.push(newSearch);
+    console.log(searchArray)
     populateButtons(searchArray,'searchButton','#buttonsArea');
-    return false;
+   
 })
 
