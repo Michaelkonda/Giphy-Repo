@@ -32,9 +32,9 @@ function populateButtons(searchArray, classToAdd, areaToAddTo) {
 //crete var image to create reference to an image tag and modify it//
 //add all the modifications to search div//
 //add searchdiv to searches div within the html//
-$(document).on('click', '.searchButton', function(){
+$(document).on('click','.searchButton',function(){
     var type = $(this).data('type');
-    var queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + type + '&api_key=LlUbXVeu1i89scCgjxNvVObmq2FxlxrU&limit:10';
+    var queryURL = 'https://api.giphy.com/v1/gifs/search?q='+type+'&api_key=LlUbXVeu1i89scCgjxNvVObmq2FxlxrU&limit:10';
     $.ajax({url:queryURL,method:'GET'})
         .done(function(response){
             for(var i=0; i<response.data.length;i++){
